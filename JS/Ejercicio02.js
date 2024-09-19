@@ -16,6 +16,9 @@ console.log(`El tipo de dato de la variable cliente es: ${typeof(cliente)}`);
 // Undefined es el tipo de dato que por defecto se asigna a variables no inicializadas o no declaradas
 
 
+
+
+
 // 2. Boolean
 console.warn("--- Tipo de dato: BOOLEAN (Boleano = true / false)");
 let esPremium = "No lo sé";
@@ -42,6 +45,8 @@ if(esPremium) {
 }
 
 
+
+
 // 3. Number
 console.warn("--- Tipo de dato: NUMBER (Números, positivos, negativos, decimales, flotantes)");
 var cantidad;
@@ -62,6 +67,8 @@ console.log(`Tu abono de: ${monto_transaccion} ha sido recibido, tu nuevo saldo 
 
 
 
+
+
 // 4. Strings (Cadenas de texto)
 console.warn("--- Tipo de dato: Strings o Cadenas de texto");
 const alumno = "Diego Miguel Rivera Chávez";
@@ -72,6 +79,8 @@ console.log(`El nombre del alumno es ${alumno}, que es un tipo de dato ${typeof(
 //Manipulando los STRINGS
 console.log(`Más adelante podremos transformar el contenido de los STRINGS usando funciones especificas como convertir a mayúsculas: ${alumno} => ${alumno.toUpperCase()}`);
 console.log(`O en su defecto a minúsculas: ${producto} => ${producto} => ${producto.toUpperCase()}`);
+
+
 
 
 
@@ -108,6 +117,8 @@ numero = "30";
 numero2 = 30;
 console.log(typeof String(numero2));
 console.log(typeof Number(numero));
+
+
 
 
 
@@ -191,6 +202,8 @@ console.log(segundoSymbol.valueOf());
 
 
 
+
+
 // 7. Null
 console.warn("--- Tipo de dato: NULL (Nulo o Vacío)");
 //El tipo de dato nulo se asigna cuando el sistema o el usuario saben de la variable pero prefieren dejarlo vacio, bajo su consentimiento, a diferencia de UNDEFINED que es un valor desconocido asignado por DEFAULT por JS
@@ -215,3 +228,35 @@ console.log(`El usuario: ${nombrelUsuario}, se ha logeado exitosamente, al tener
 
 const descuento = null;
 console.log(typeof descuento);
+
+//Comparando NULL y UNDEFINED
+// Si bien  UNDEFINED y NULL tienen el mismo valor, no tienen el mismo tipo de dato
+console.log("Comparación de la equidad entre UNDEFINED y NULL");
+(fechaUltimoPost==estatusRelacionSentimental)?
+console.log("Ambas variables tienen el mismo valor"):
+console.log("Las variables no tienen el mismo valor");
+
+console.log("Comparación de la identidad entre UNDEFINED y NULL");
+(fechaUltimoPost===estatusRelacionSentimental)?
+console.log("Ambas variables tienen el mismo valor"):
+console.log("Las variables no tienen el mismo valor");
+//Alternativa
+console.log("Comparación de la identidad entre UNDEFINED y NULL");
+console.log(
+    (fechaUltimoPost === estatusRelacionSentimental) ?
+    "Ambas variables tienen el mismo valor y el mismo tipo de dato":
+    "Las variables no tienen el mismo valor, pero no el mismo tipo de dato"
+);
+
+
+
+
+
+// 8. FUNCTION (Funciones)
+console.warn("--- Tipo de dato: FUNCTION (Función)");
+//Declaración de una función que nos permite recibir un parametro en este caso el nombre de la persona a saludar, y le enviamos un saludo, esta función la asignamos a una constante.
+const saludar = function(nombre) {return `Hola, ${nombre}!`};
+//Invocamos a la función delcarada
+console.log(saludar('Diego'));
+//Y que tipo de dato tiene esta constante
+console.log(`El tipo de dato de la constante saludar es: ${typeof (saludar)}`);
