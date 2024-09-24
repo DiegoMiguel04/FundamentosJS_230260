@@ -1,30 +1,122 @@
 //Objetos
-console.warn("--- Tipo de dato: Object");
-const producto1 = {
-    Nombre:"Tablet\"9",
-    Marca:"Mac",
-    Modelo:"iPad",
-    CostoCompra: 11500.25,
-    CostoVenta: 15400,
-    Disponible: true,
-    SKU: Symbol("RICD040330HPLVHGA8"),
-    Colores: ["Blanco", "Negro", "Rosa", "Azul","Amarillo"]
+const bg = "linear-gradient(11deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 33%, rgba(0, 212, 255, 1) 86%)";
+const style_console = `background: ${bg}; color: white; border-radius: 6px; padding: 4px; font-size: 1.0rem; font-weight: bold`;
+//VARIABLES INDEPENDIENTES
+console.log("%c 1.- variables Independientes ", style_console);
+
+//Declaramos valores independientes relacionadas a un Producto
+let productoNombre = "Laptop Gamer 17.3\"";
+let productoMarca = "ASUS ROG";
+let productoModelo = "Strix G17";
+let productoPrecio = 37000.00;
+let productoDisponibilidad = true;
+let productoSKU = Symbol("STRIXG17-HC570");
+let productoStock = 50;
+let productoImagen = null;
+let productoBarcode;
+let productoCategorias = ["Electrónicos", "Computación", "Gaming", "Promociones Buen Fin", "Mejor Valorados"];
+
+//Accedemos a los valores de las carácteristicas del producto de manera independiente
+console.log(`Los datos del Producto son: \n
+    Nombre: ${productoNombre}, Tipo de dato <${typeof(productoNombre)}>
+    Marca: ${productoMarca}, Tipo de dato <${typeof(productoMarca)}>
+    Modelo: ${productoModelo}, Tipo de dato <${typeof(productoModelo)}>
+    Precio: ${productoPrecio}, Tipo de dato <${typeof(productoPrecio)}>
+    Disponibilidad: ${productoDisponibilidad}, Tipo de dato <${typeof(productoDisponibilidad)}>
+    Stock: ${productoStock}, Tipo de dato <${typeof(productoStock)}>
+    Barcode: ${productoBarcode}, Tipo de dato <${typeof(productoBarcode)}>
+    Imagen: ${productoImagen}, Tipo de dato <${typeof(productoImagen)}>
+    Categorias: ${productoCategorias}, Tipo de dato <${typeof(productoCategorias)}>`);
+console.log("En el caso del SKU al ser un Symbol, no se puere concatenar a la cadena de impresión anterior");
+console.log(productoSKU);
+console.log(typeof(productoSKU));
+
+//Ahora lo declaramos como un OBJETO
+console.log("%c 2.- Objeto ", style_console);
+let Producto = {
+    Nombre : "Tenis Deportivos",
+    Marca : "Nike",
+    Modelo : "Air Max",
+    Precio : 3499.99,
+    Disponibilidad : false,
+    Stock : 0,
+    SKU : "ARM770-FX76177",
+    Imagen : "../assets/products/airmax/model-07.jpg",
+    Barcode : null,
+    Categorias: ["Deportes", "Juvenil"]
 }
-//Imprimir el objeto
-console.log(producto1);
-//Los objetos se pueden imprimir en forma de tabla utilizando la funcion console.table
-console.table(producto1);
+//Ahora leemos el objeto completo
+console.table(Producto);
 
-//Acceder a las propiedades de un objeto
-console.warn("Leyendo las propiedades de un Objeto y sus tipos de datos")
-console.log(`Nombre del producto: ${producto1.Nombre}, que es del tipo: ${typeof(producto1.Nombre)}\n`+
-`Marca del producto: ${producto1.Marca}, que es del tipo: ${typeof(producto1.Marca)}`+
-`Marca del producto: ${producto1.Modelo}, que es del tipo: ${typeof(producto1.Modelo)}`+
-`Marca del producto: ${producto1.CostoCompra}, que es del tipo: ${typeof(producto1.CostoCompra)}`+
-`Marca del producto: ${producto1.CostoVenta}, que es del tipo: ${typeof(producto1.CostoVenta)}`+
-`Marca del producto: ${producto1.Disponible}, que es del tipo: ${typeof(producto1.Disponible)}`+
-`Marca del producto: ${String(producto1.SKU)}, que es del tipo: ${typeof(String(producto1.SKU))}`+
-`Marca del producto: ${producto1.Colores}, que es del tipo: ${typeof(producto1.Colores)}`);
+console.log("Accediendo a propiedades específicas del PRODUCTO");
+console.log(`Nombre Completo del PRODUCTO: ${Producto.Nombre} ${Producto.Marca} ${Producto.Modelo}`);
+console.log(`Precio: ${Producto.Precio}`);
+if (Producto.Disponibilidad == 0)
+    console.log(`Estatus: Agotado`);
+else
+    console.log(`Estatus: ${Producto.Stock} unidades disponibles`);
+
+//Desustructuración de Objetos
+
+console.log("%c 3.- Destructuración de Objetos", style_console);
+let Producto2 = {
+    Clave : 316,
+    Nombre : "Bloqueador Solar",
+    Marca : "Solarity",
+    Modelo : "HJ-500",
+    Precio : 999.99,
+    Disponibilidad : true,
+    Stock : 20,
+    SKU : "OO771OP-66MK",
+    Imagen : "../assets/productos/generales/Bloqueador-Solarity.jpg",
+    Barcode : 765192773219,
+    Categorias : ["Playa", "Bloqueador", "Unisex"]
+}
+
+let Comprador = {
+    Clave : 230260,
+    Nombre : "Diego Miguel",
+    Apellidos : "Rivera Chávez",
+    Tipo : "Infrecuente",
+    Correo : "riverachavezdiegomiguel@gmail.com",
+    PaisOrigen : "Mexico",
+    SaldoActual : 27000.00,
+}
+
+let Pedido = {
+    ProductoClave : 717,
+    CompradorClave : 230260,
+    Cantidad : 30,
+    Estatus : "Carrito de Compra Lleno",
+    TipoPago : "Tarjeta de Crédito",
+}
+
+//En base a los 3 objetos necesitamos calcular el costo de la compra y si le alcanza con su saldo a favor
+let {Precio : ProductoPrecio2} = Producto2;
+let {Cantidad : PedidoCantidad} = Pedido;
+let {SaldoActual : ClienteSaldoActual} = Comprador;
+let CostoCompra = ProductoPrecio2 = PedidoCantidad;
+console.log(`El cliente ha agregado a su carrito de compras ${PedidoCantidad} unidades, con un costo total de: $${CostoCompra}`);
+if (CostoCompra<ClienteSaldoActual)
+    console.log("El cliente tiene saldo suficiente.");
+else
+    console.log("El cliente no cuenta con saldo suficiente.");
+
+//Actualizar el valor de los Objetos
+console.log("%c 4.- Actualización de los valores de las propiedades de un Objeto", style_console);
+console.log(`El objeto actualmente tiene los siguientes valores`);
+console.log(JSON.stringify(Producto2, null, 2));
+//Convierte el objeto a una cadena para evitar problemas con la referencia
+console.log(`Por cuestiones de inflación el costo del producto ha cambiado y debe ser actualizado... de $6,829.00 a $6915.50`);
+//Para modificar el valor de un objeto basta con igualar el nuevo valor de la propiedad deseada
+Producto2.Precio = 6915.50;
+console.log(`Los nuevos valores del Producto son: `);
+console.log(Producto2);
+
+// ¿Puedo cambiar no solo el valor, sino el tipo de dato de un Objeto en JavaScript?
+console.log(`-------------------------------------------------------`);
+console.log(`El objeto actualmente tiene los siguientes valores`);
+let 
 
 
 
@@ -34,37 +126,63 @@ console.log(`Nombre del producto: ${producto1.Nombre}, que es del tipo: ${typeof
 
 
 
-console.warn("--- Separacion ---");
-const producto = {
-    nombre : "Tablet",
-    precio : 300,
-    disponible : true
-};
+// const producto1 = {
+//     Nombre:"Tablet 9\"",
+//     Marca:"Mac",
+//     Modelo:"iPad",
+//     CostoCompra: 11500.25,
+//     CostoVenta: 15400,
+//     Disponible: true,
+//     SKU: Symbol("RICD040330HPLVHGA8"),
+//     Colores: ["Blanco", "Negro", "Rosa", "Azul","Amarillo"]
+// }
+// //Imprimir el objeto
+// console.log(producto1);
+// //Los objetos se pueden imprimir en forma de tabla utilizando la funcion console.table
+// console.table(producto1);
 
-console.log(producto);
-console.table(producto);
+// //Acceder a las propiedades de un objeto
+// console.warn("Leyendo las propiedades de un Objeto y sus tipos de datos")
+// console.log(`Nombre del producto: ${producto1.Nombre}, que es del tipo: ${typeof(producto1.Nombre)}\n`+
+// `Marca del producto: ${producto1.Marca}, que es del tipo: ${typeof(producto1.Marca)}`+
+// `Marca del producto: ${producto1.Modelo}, que es del tipo: ${typeof(producto1.Modelo)}`+
+// `Marca del producto: ${producto1.CostoCompra}, que es del tipo: ${typeof(producto1.CostoCompra)}`+
+// `Marca del producto: ${producto1.CostoVenta}, que es del tipo: ${typeof(producto1.CostoVenta)}`+
+// `Marca del producto: ${producto1.Disponible}, que es del tipo: ${typeof(producto1.Disponible)}`+
+// `Marca del producto: ${String(producto1.SKU)}, que es del tipo: ${typeof(String(producto1.SKU))}`+
+// `Marca del producto: ${producto1.Colores}, que es del tipo: ${typeof(producto1.Colores)}`);
 
-console.log(producto.nombre);
-console.log(producto.precio);
-console.log(producto.disponible);
-
-//Destructuring
-const { nombre, precio, disponible } = producto;
-console.log(nombre);
-console.log(precio);
-console.log(disponible);
-
-//Object Literal Enhacement
-const autenticado = true;
-const usuario = "juan";
-
-// const nuevoObjecto = {
-//     autenticado : autenticado,
-//     usuario : usuario
+// console.warn("--- Separacion ---");
+// const producto = {
+//     nombre : "Tablet",
+//     precio : 300,
+//     disponible : true
 // };
 
-const nuevoObjecto = {
-    autenticado,
-    usuario
-};
-console.table(nuevoObjecto);
+// console.log(producto);
+// console.table(producto);
+
+// console.log(producto.nombre);
+// console.log(producto.precio);
+// console.log(producto.disponible);
+
+// //Destructuring
+// const { nombre, precio, disponible } = producto;
+// console.log(nombre);
+// console.log(precio);
+// console.log(disponible);
+
+// //Object Literal Enhacement
+// const autenticado = true;
+// const usuario = "juan";
+
+// // const nuevoObjecto = {
+// //     autenticado : autenticado,
+// //     usuario : usuario
+// // };
+
+// const nuevoObjecto = {
+//     autenticado,
+//     usuario
+// };
+// console.table(nuevoObjecto);
