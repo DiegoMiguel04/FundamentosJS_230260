@@ -88,7 +88,7 @@ let Pedido = {
     CompradorClave : 230260,
     Cantidad : 30,
     Estatus : "Carrito de Compra Lleno",
-    TipoPago : "Tarjeta de Crédito",
+    TipoPago : "Tarjeta de Crédito"
 }
 
 //En base a los 3 objetos necesitamos calcular el costo de la compra y si le alcanza con su saldo a favor
@@ -101,6 +101,8 @@ if (CostoCompra<ClienteSaldoActual)
     console.log("El cliente tiene saldo suficiente.");
 else
     console.log("El cliente no cuenta con saldo suficiente.");
+
+
 
 //Actualizar el valor de los Objetos
 console.log("%c 4.- Actualización de los valores de las propiedades de un Objeto", style_console);
@@ -116,7 +118,132 @@ console.log(Producto2);
 // ¿Puedo cambiar no solo el valor, sino el tipo de dato de un Objeto en JavaScript?
 console.log(`-------------------------------------------------------`);
 console.log(`El objeto actualmente tiene los siguientes valores`);
-let 
+let tipoDisponibilidad = typeof(Producto2.Disponibilidad);
+console.log(`El tipo de dato de la disponibilidad es: ${tipoDisponibilidad}`);
+console.log(JSON.stringify(Producto2, null, 2));
+Producto2.Disponibilidad = "Sí";
+let nuevoTipoDisponibilidad = typeof(Producto2.Disponibilidad);
+console.log(Producto2);
+console.log(`El nuevo tipo de dato de la disponibilidad es: ${typeof nuevoTipoDisponibilidad}`);
+//Sí!!
+
+
+
+//Agregar nuevas propiedades a un objeto existente
+console.log(`%c 5.- Agregación de las propiedades de un Objeto (MUTABLE)`, style_console);
+console.log("Objeto antes de ser modificado:");
+console.table(Comprador);
+
+//Agregando propiedades
+Comprador['Direccion'] = "Av. 05 de Mayo #25, Interior 4A, Huauchinango, Puebla, Mexico";
+Comprador['Tipo'] = "Premium";
+Comprador['Estatus'] = "Inactivo";
+Comprador['TotalCompras'] = 75;
+console.log("Objeto después de ser modificado:");
+console.table(Comprador);
+
+
+
+//Eliminar propiedades de un objeto existentes
+console.log(`%c 6.- Eliminar propiedades de un Objeto (MUTABLE)`, style_console);
+console.log("Objeto antes de ser modificado:");
+console.table(Pedido);
+//Eliminamos la propiedad de TipoPago
+delete Pedido['TipoPago'];
+// delete Pedido.TipoPago;
+console.log("Objeto después de ser modificado:");
+console.table(Pedido);
+
+
+
+console.log(`%c 7.- Métodos para controlar la mutabilidad de los objetos, Congelación (FREEZE)`, style_console);
+//Si deseamos no permitir que los objetos sean modificados ni en estructura, ni en valor, utilizaremos el metodo FREEZE (congelar)
+console.log('La estructura actual del objeto Comprador es:');
+console.table(Comprador);
+Object.freeze(Comprador); //Freeze a objeto Comprador
+//Intentaremos agregar, eliminar o modificar los valores d sus propiedades
+Comprador.FechaUltimaCompra = "05/09/2024 10:15:25";
+delete Comprador.Tipo;
+Comprador.Direccion = "Calle 16 de Septiembre #102, Col. Manantiales, Huauchinango, Puebla, México";
+console.log("Verificamos si se realizaron los cambios en el Objeto Comprador");
+console.table(Comprador);
+
+
+
+console.log(`%c 8.- Métodos para controlar la mutabilidad de los Objetos, Sellado (SEAL)`, style_console);
+//Sin embargo, en el caso de que desearamos poder modificar los valores de las propiedades del Objeto, pero no su estructura, usaremos SEAL
+console.log("Objeto antes de ser modificado:");
+console.table(Pedido);
+//Sellamos el objeto
+Object.seal(Pedido);
+//Intentamos modificar su estructura
+Pedido['FechaPedido'] = "25/09/2024 11:05:03";
+delete Pedido['Cantidad'];
+console.log('Verificamos si se realizaron los cambios en el Objeto Pedido:');
+console.table(Pedido);
+//Ahora intentamos modificar el valor de las propiedades
+Pedido.Cantidad = 5;
+console.log('Verificamos si se realizaron los cambios en el Objeto Pedido:');
+console.table(Pedido);
+
+//Desestructuración de 2 o más Objetos
+console.log(`%c 9.- Desestructuración de 2 o más Objetos`, style_console);
+let {Precio: ProductoPrecio, Marca: ProductoMarca} = Producto;
+let {Correo: clienteCorreo, PaisOrigen: clientePais, SaldoActual: clienteSaldo, Tipo: clienteTipo} = Comprador;
+//Transformar valores cuantitativos en cualitativos
+if (ProductoPrecio>2000) {
+    ProductoPrecio = "Caro";
+} else {
+    ProductoPrecio = "Barato";
+}
+
+if (clienteSaldo>0) {
+    clienteSaldo = "A favor";
+} else if (clienteSaldo<0) {
+    clienteSaldo = "En contra";
+} else {
+    clienteSaldo = "Sin deuda"
+}
+//Transformar valores cualitativos en cuantitativos
+let clienteNivel;
+if (clienteTipo == "Premium")
+    clienteNivel = 1;
+if (clienteTipo == "Freemium")
+    clienteNivel = 2;
+if (clienteTipo == "No identificado")
+    clienteNivel = 3;
+
+//Clasificar al cliente por su País de Origen
+if (clientePais == "Mexico") {
+    clientePais = "Nacional";
+} else {
+    clientePais = "Extranjero";
+}
+
+//OLE - Object Literal Enhancement
+let datosClientesPromociones = {clienteCorreo, clientePais, clienteNivel, clienteSaldo, productoMarca, productoPrecio};
+//El nuevo objeto que creeamos seria un ejemplo de la informacion que enviariamos al area de marketing para la difusión de promociones
+console.log("Los datos del cliente y sus hábitos de compra son:");
+console.table(datosClientesPromociones);
+
+
+
+console.log();
+
+
+
+
+
+
+
+
+
+
+
+//Operaciones sobre Objetos
+//Unión de Objetos
+console.log(`%c 10.- `, style_console);
+
 
 
 
