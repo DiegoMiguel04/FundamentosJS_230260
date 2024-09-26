@@ -12,7 +12,7 @@ Previo a iniciar el desarrollo de software para web usando el framework de Node.
 |2.|Inicialización del Proyecto de Fundamentos de JS|5|Finalizada|
 |3.|Declaración de Variables (Undefined/Boolean/Number)|10|Finalizada|
 |4.|Declaración de Variables (String/BigInt/Symbol/Null)|6|Finalizada|
-|5.|Introducción de Objetos|Por Definir|Activa|
+|5.|Introducción de Objetos|19|Finalizada|
 
 ### Autor
 Diego Miguel Rivera Chávez
