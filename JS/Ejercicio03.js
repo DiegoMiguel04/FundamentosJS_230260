@@ -262,6 +262,9 @@ console.log("Fusionamos los 3 objetos en uno nuevo, sin perdida de información.
 console.log(Venta2);
 console.table(Venta2);
 
+
+
+console.log("%c12.- Mutabilidad POST Unión de Objetos", style_console);
 //Vamos a verificar el estatus de mutabilidad de los objetos
 console.log("Vamos a verificar el estatus de mutabilidad del objeto PEDIDO");
 console.log(`Esta el objeto de Pedido Congelado?: ${Object.isFrozen(Pedido)}`);
