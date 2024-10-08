@@ -194,15 +194,15 @@ estudiantes.push("Israel Hernandez");
 estudiantes.push("Juan Perez");
 estudiantes.push("Karla Martinez");
 estudiantes.push("Carlos Gomez");
-console.tabñe(estudiantes)
+console.table(estudiantes)
 Object.freeze(estudiantes)
 //Filter es un método que recorre los elementos de un arreglo haciendo alguna tarea en especifico, lo que tenemos que considerar es que este nuevo arreglo resultante es un objeto nuevo que puede ser mutable
 console.log("Filtrando los primeros 5 elementos");
-let nuevoEstudiantes = estudiantes.filter((estudiantes)=>index<5);
+let nuevoEstudiantes = estudiantes.filter((estudiante, index)=>index<5);
 console.table(nuevoEstudiantes);
 console.table(filtraPrimeros5(estudiantes));
 //Filtrar a los estudiantes que su nombre tenga mas de 15 caracteres
-let nuevoEstudiantesNombre = estudiantes.filter((estudiantes)=>estudiantes.length>15);
+let nuevoEstudiantesNombre = estudiantes.filter((estudiante)=>estudiante.length>15);
 console.table(nuevoEstudiantesNombre);
 //Intentamos modificar el nuevo arreglo que no ha sido congelado
 nuevoEstudiantes.unshift("L");
@@ -228,5 +228,5 @@ console.table(signosZodiacales.map(signosZodiacales=>signosZodiacales.toUpperCas
 const costosListaCompra = [15, 52.50, 16.90, 32.50, 28, 105, 45.2, 94.10]
 //Como podemos calcular el total de una lista de costos de un carrito de compras
 console.log("Los precios son:")
-console.table(costosListaCompras)
+console.table(costosListaCompra)
 console.log(`El total de la compra es: ${costosListaCompra.reduce((total, precio)=>total+precio, 0).toFixed(2)}`)
